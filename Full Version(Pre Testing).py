@@ -146,10 +146,10 @@ def quest():
 ''')
     time.sleep(3)
     qchoice = input('''
-        ┌────────────────────────────────────────────────────────┐
-        │ Which quest do you pick? {F}ire Dungeon, {I}ce Dungeon │
-        │               or the {E}arth Dungeon?                  │
-        └────────────────────────────────────────────────────────┘
+        ┌─────────────────────────────────────────────────────────┐
+        │ Which quest do you pick? {F}ire Dungeon, {I}ce Dungeon, │
+        │               {E}arth Dungeon or View {C}oins?          │
+        └─────────────────────────────────────────────────────────┘
     ''')
     if(qchoice == 'F' or qchoice == 'f'):
         print('Loading Dungeon....')
@@ -163,7 +163,9 @@ def quest():
         print('Loading Dungeon....')
         time.sleep(9)
         rocked()
-
+    if(qchoice == 'C' or qchoice == 'c'):
+        print(coin)
+        
 
 #==========-Fire-Dungeon-==========#
 
@@ -594,6 +596,7 @@ def ice_gob():
 def fire_drag():
     fd_hp = 120
     global player_hp
+    global dungeonkey
     print('''
         ╔════════════════════════════════════════╗
         ║ Fire Dragon: enter witty comment here. ║
@@ -690,7 +693,10 @@ def fire_drag():
         ║ you got {} coins ║
         ╙──────────────────╜'''.format(coin))
             int(users[0])+coin
+            dungeonkey = dungeonkey -1
             time.sleep(1)
+        if(dungeonkey == 0):
+            final_b()
 
 
 #==========-Ice-Dragon-==========#
@@ -699,6 +705,7 @@ def fire_drag():
 def ice_drag():
     id_hp = 130
     global player_hp
+    global dungeonkey
     print('''
         ╔═══════════════════════════════════════╗
         ║ Ice Dragon: enter witty comment here. ║
@@ -795,7 +802,10 @@ def ice_drag():
         ║ you got {} coins ║
         ╙──────────────────╜'''.format(coin))
             int(users[0])+coin
-            time.sleep(1)    
+            dungeonkey = dungeonkey -1
+            time.sleep(1)
+        if(dungeonkey == 0):
+            final_b()
 
 
 #==========-Earth-Dungeon-==========#
@@ -804,6 +814,7 @@ def ice_drag():
 def ear_drag():
     ed_hp = 170
     global player_hp
+    global dungeonkey
     print('''
         ╔═════════════════════════════════════════╗
         ║ Earth Dragon: enter witty comment here. ║
@@ -900,7 +911,30 @@ def ear_drag():
         ║ you got {} coins ║
         ╙──────────────────╜'''.format(coin))
             int(users[0])+coin
+            dungeonkey = dungeonkey -1
             time.sleep(1)
+        if(dungeonkey == 0):
+            final_b()
+            
+
+#==========-Hydra-Goose-==========#
+
+
+def final_b():
+    print('''
+        You return back to the Tavern but something seems off.
+        You peek at a table and see a glass full of "juice"
+        shaking slightly. SUDDENLY! the door swings open
+        revealing the sourse of the shaking! Its a goose.
+
+        ╔══════════════╗
+        ║ Goose: Quack ║
+        ╚══════════════╝
+
+        Confused by this herasy you cut the gooses head off.
+        Suddenly a second head sprouts from the goose's head stump
+''')
+    hydra_goose()
 
 
 #==========-Hydra-Goose-==========#
@@ -908,12 +942,12 @@ def ear_drag():
             
 def hydra_goose():
     hydg_hp = 160
-    head = 1
+    head = 2
     global player_hp
     print('''
-        ╔════════════════════════════════════════╗
-        ║ Hydra Goose: enter witty comment here. ║
-        ╚════════════════════════════════════════╝
+        ╔═══════════════════╗
+        ║ Hydra Goose: Honk ║
+        ╚═══════════════════╝
     ''')
     time.sleep(1)
     while(player_hp > 0 and hydg_hp > 0):
@@ -1032,12 +1066,17 @@ def hydra_goose():
 
             
 global player_hp
+global dungeonkey
+
 player_hp = 100
-coin = ['0']
+dungeonkey = 3
+
+users = ['0']
 fg_hp = 60
 ig_hp = 40
 eg_hp = 80
 hydg_hp = 160
+
 
 intro()
 
